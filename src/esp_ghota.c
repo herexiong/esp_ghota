@@ -210,7 +210,9 @@ static void lwjson_callback(lwjson_stream_parser_t *jsp, lwjson_stream_type_t ty
                 SetFlag(handle, GHOTA_RELEASE_GOT_FNAME);
                 ESP_LOGD(TAG, "Got Filename for Asset: %s", handle->scratch.name);
             }
-            if (strcasecmp(jsp->stack[4].meta.name, "url") == 0)
+            // if (strcasecmp(jsp->stack[4].meta.name, "url") == 0)
+            //gitee和github接口有差别
+            if (strcasecmp(jsp->stack[4].meta.name, "browser_download_url") == 0)
             {
                 strncpy(handle->scratch.url, jsp->data.str.buff, CONFIG_MAX_URL_LEN);
                 SetFlag(handle, GHOTA_RELEASE_GOT_URL);
